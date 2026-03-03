@@ -1,9 +1,15 @@
 let player;
+let worldImg;
 
 function setup() {
   createCanvas(800, 600);
+  textFont("Patrick Hand");
   player = new Player();
-  textFont("Patrick Hand"); // 👈 ADD THIS
+}
+
+// Preload the world image before anything else
+function preload() {
+  worldImg = loadImage("assets/images/worldBackground.png");
 }
 
 function draw() {
@@ -12,19 +18,33 @@ function draw() {
   } else if (gameState === "characterSelect") {
     drawCharacterSelect();
   } else if (gameState === "world") {
-    drawWorld();
-    player.move();
+    drawWorldScreen();
     player.display();
-    checkBuildingEntry(player);
-  } else if (gameState === "store") {
-    drawStore();
-  } else if (gameState === "fail") {
-    drawFailScreen();
-  } else if (gameState === "success") {
-    drawSuccessScreen();
+    playerMovement();
   }
 }
 
+// ---------------- World Screen ----------------
+function drawWorldScreen() {
+  if (worldImg) {
+    image(worldImg, 0, 0, width, height);
+  } else {
+    background(200); // fallback if image not loaded
+  }
+}
+
+// ---------------- Player Movement ----------------
+function playerMovement() {
+  if (keyIsDown(LEFT_ARROW)) player.x -= player.speed;
+  if (keyIsDown(RIGHT_ARROW)) player.x += player.speed;
+  if (keyIsDown(UP_ARROW)) player.y -= player.speed;
+  if (keyIsDown(DOWN_ARROW)) player.y += player.speed;
+
+  player.x = constrain(player.x, 0, width - player.size);
+  player.y = constrain(player.y, 0, height - player.size);
+}
+
+// ---------------- Key Handling ----------------
 function keyPressed() {
   if (gameState === "start" && key === " ") {
     gameState = "characterSelect";
@@ -43,16 +63,6 @@ function keyPressed() {
       selectedCharacter = "unisex";
       player.setCharacter("unisex");
       gameState = "world";
-
-      if (gameState === "fail" && key === " ") {
-        gameState = "characterSelect";
-        currentLevel = 0;
-      }
-
-      if (gameState === "success" && key === " ") {
-        gameState = "start";
-        currentLevel = 0;
-      }
     }
   }
 }

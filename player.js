@@ -3,22 +3,11 @@ class Player {
     this.x = 100;
     this.y = 300;
     this.size = 32;
-    this.speed = 3;
     this.type = "boy";
   }
 
   setCharacter(type) {
     this.type = type;
-  }
-
-  move() {
-    if (keyIsDown(LEFT_ARROW)) this.x -= this.speed;
-    if (keyIsDown(RIGHT_ARROW)) this.x += this.speed;
-    if (keyIsDown(UP_ARROW)) this.y -= this.speed;
-    if (keyIsDown(DOWN_ARROW)) this.y += this.speed;
-
-    this.x = constrain(this.x, 0, width - this.size);
-    this.y = constrain(this.y, 0, height - this.size);
   }
 
   display() {
@@ -43,7 +32,7 @@ class Player {
     rect(12, 6, 2, 2);
     rect(18, 6, 2, 2);
 
-    // BODY / CLOTHES
+    // BODY
     if (this.type === "boy") fill("#7ec8e3");
     if (this.type === "girl") fill("#ffb6d9");
     if (this.type === "unisex") fill("#cdb4db");
