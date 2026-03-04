@@ -1,22 +1,5 @@
 function drawStartScreen() {
-  background("#fff3e6"); // warm creamy tone
-
-  textAlign(CENTER);
-
-  // shadow
-  fill(0, 40);
-  textSize(60);
-  text("Pixel Land Explorer", width / 2 + 3, 203);
-
-  // main title
-  fill("#5a3e2b");
-  textSize(60);
-  text("Pixel Land Explorer", width / 2, 200);
-
-  // subtitle
-  fill("#7a5c4b");
-  textSize(24);
-  text("Press SPACE to Start", width / 2, 320);
+  image(startimg, 0, 0, width, height);
 }
 
 function drawCharacterSelect() {
@@ -83,21 +66,59 @@ function drawCharacterOption(x, y, type, keyLabel) {
 }
 
 function drawFailScreen() {
-  background("#ffd6d6");
-  textAlign(CENTER);
-  textSize(32);
-  fill(0);
-  text("Time's Up!", width / 2, height / 2 - 20);
-  textSize(18);
-  text("Press SPACE to Try Again", width / 2, height / 2 + 20);
+  background("#fff3e6");
+  fill("#ff4d4d");
+  textAlign(CENTER, CENTER);
+  textSize(40);
+  text("Try Again!", width / 2, height / 2 - 20);
+
+  textSize(20);
+  text(
+    "Press SPACE to retry\nyou can only move on until you get it right!",
+    width / 2,
+    height / 2 + 30,
+  );
 }
 
-function drawSuccessScreen() {
-  background("#d6ffd9");
-  textAlign(CENTER);
-  textSize(32);
+function drawInstructionsPopup() {
+  push();
+
+  // Dark background overlay
+  fill(0, 160);
+  rect(0, 0, width, height);
+
+  // Popup box
+  fill(255);
+  stroke(0);
+  strokeWeight(2);
+  rect(width / 2 - 250, height / 2 - 150, 500, 300, 15);
+
+  // Title
   fill(0);
-  text("All Stores Completed!", width / 2, height / 2 - 20);
+  noStroke();
+  textAlign(CENTER);
+  textSize(28);
+  text("How to Play", width / 2, height / 2 - 110);
+
+  // Instructions
+  textSize(16);
+  text(
+    "• Use arrow keys to move\n\n" +
+      "• Stand at a building door\n" +
+      "• Press ENTER to enter\n\n" +
+      "• Click words in the correct order\n" +
+      "• If you click wrong or time runs out,\n  you must try again!",
+    width / 2,
+    height / 2 - 50,
+  );
+
+  // X button
+  fill("#ff4d4d");
+  rect(width / 2 + 210, height / 2 - 140, 30, 30, 5);
+
+  fill(255);
   textSize(18);
-  text("Press SPACE to Return", width / 2, height / 2 + 20);
+  text("X", width / 2 + 225, height / 2 - 133);
+
+  pop();
 }
