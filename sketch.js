@@ -2,21 +2,30 @@ let player;
 let levelBackgrounds = [];
 let worldimg;
 let startimg;
+let characterimg;
+let tryagainimg;
+let playerImages = [];
 let showInstructions = true;
+
+function setup() {
+  createCanvas(800, 600);
+  player = new Player();
+  textFont("Patrick Hand");
+}
 
 function preload() {
   // Load level-specific backgrounds
   for (let lvl of levels) {
     levelBackgrounds.push(loadImage(lvl.bgImg));
   }
-  worldimg = loadImage("assets/worldbackground.png");
+  worldimg = loadImage("assets/worldBackground.png");
   startimg = loadImage("assets/introImage.png");
-}
+  characterimg = loadImage("assets/characterBackground.png");
+  tryagainimg = loadImage("assets/tryagainScreen.png");
 
-function setup() {
-  createCanvas(800, 600);
-  player = new Player();
-  textFont("Patrick Hand");
+  playerImages[0] = loadImage("assets/player1.png");
+  playerImages[1] = loadImage("assets/player2.png");
+  playerImages[2] = loadImage("assets/player3.png");
 }
 
 function draw() {

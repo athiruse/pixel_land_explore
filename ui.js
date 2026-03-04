@@ -3,20 +3,7 @@ function drawStartScreen() {
 }
 
 function drawCharacterSelect() {
-  background("#e6f7ff");
-
-  textAlign(CENTER);
-  textSize(32);
-  fill(0);
-  text("Choose Your Character", width / 2, 100);
-
-  textSize(16);
-  text("Press 1, 2, or 3", width / 2, 140);
-
-  // Draw character options
-  drawCharacterOption(width / 4 - 20, 250, "boy", "1");
-  drawCharacterOption(width / 2 - 20, 250, "girl", "2");
-  drawCharacterOption((3 * width) / 4 - 20, 250, "unisex", "3");
+  image(characterimg, 0, 0, width, height);
 }
 
 function drawCharacterOption(x, y, type, keyLabel) {
@@ -66,18 +53,7 @@ function drawCharacterOption(x, y, type, keyLabel) {
 }
 
 function drawFailScreen() {
-  background("#fff3e6");
-  fill("#ff4d4d");
-  textAlign(CENTER, CENTER);
-  textSize(40);
-  text("Try Again!", width / 2, height / 2 - 20);
-
-  textSize(20);
-  text(
-    "Press SPACE to retry\nyou can only move on until you get it right!",
-    width / 2,
-    height / 2 + 30,
-  );
+  image(tryagainimg, 0, 0, width, height);
 }
 
 function drawInstructionsPopup() {
